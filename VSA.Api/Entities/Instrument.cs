@@ -7,6 +7,8 @@ namespace VSA.Api.Entities
         
         public Brand Brand { get; set; } //Entity
 
+        public Guid BrandId { get; set; }
+
         public string Model { get; set; }
 
         public string Color { get; set; }

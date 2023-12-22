@@ -14,7 +14,9 @@ namespace VSA.Api.Contracts
 
         public DateTime CreatedOnUtc { get; set; }
 
-        public List<Instrument> Instruments { get; set; }
+        public List<Instrument>? Instruments { get; set; }
+
+
 
     }
 }

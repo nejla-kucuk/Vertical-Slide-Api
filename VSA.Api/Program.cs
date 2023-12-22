@@ -2,6 +2,8 @@ using Carter;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using VSA.Api.Database;
 using VSA.Api.Features.Brands;
 
@@ -23,13 +25,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 
-builder.Services.AddCarter();
+
 
 var assembly = typeof(Program).Assembly;
 
 builder.Services.AddValidatorsFromAssembly(assembly);
 
-builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+
 
 var app = builder.Build();
 
@@ -39,8 +43,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.MapCarter();
 
 app.UseHttpsRedirection();
 

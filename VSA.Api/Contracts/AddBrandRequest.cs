@@ -1,14 +1,14 @@
-﻿namespace VSA.Api.Contracts
+﻿using MediatR;
+
+namespace VSA.Api.Contracts
 {
-    public class AddBrandRequest
+    public class AddBrandRequest : IRequest<BrandResponse>
     {
         public string Name { get; set; }
 
         public string DisplayText { get; set; }
 
         public string Address { get; set; }
-
-        public string? Instrument {  get; set; }
        
     }
 }

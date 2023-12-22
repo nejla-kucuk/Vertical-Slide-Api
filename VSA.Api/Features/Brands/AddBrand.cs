@@ -80,32 +80,4 @@ namespace VSA.Api.Features.Brands
         }
     }
 
-    public class AddBrandEndpoint : ICarterModule
-    {
-        public void AddRoutes(IEndpointRouteBuilder app)
-        {
-            app.MapPost("api/brands", async context =>
-            {
-                // Özel tipi çözümleme ve gerekli nesneyi oluşturma
-                var request = await context.Request.ReadFromJsonAsync<AddBrandRequest>();
-                var command = request.Adapt<AddBrand.Command>();
-
-                var sender = context.RequestServices.GetRequiredService<ISender>();
-
-                var result = await sender.Send(command);
-
-                if (result is null)
-                {
-                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                    await context.Response.WriteAsJsonAsync(new { Error = "Result.Null" });
-                }
-                else
-                {
-                    context.Response.StatusCode = (int)HttpStatusCode.OK;
-                    await context.Response.WriteAsJsonAsync(result);
-                }
-            });
-        }
-
-    }
 }

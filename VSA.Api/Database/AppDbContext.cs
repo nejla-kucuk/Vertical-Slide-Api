@@ -36,7 +36,7 @@ namespace VSA.Api.Database
             modelBuilder.Entity<Brand>()
                 .HasMany(b => b.Instruments) // Brand sınıfının Instruments navigation property'si için ilişkiyi belirtiyoruz.
                 .WithOne(i => i.Brand) // Instrument sınıfının Brand navigation property'si ile ilişkiyi belirtiyoruz.
-                .HasForeignKey(i => i.Id); // Instrument sınıfının BrandId foreign key'ini belirtiyoruz.
+                .HasForeignKey(i => i.BrandId); // Instrument sınıfının BrandId foreign key'ini belirtiyoruz.
 
 
             modelBuilder.Entity<Instrument>()
@@ -62,7 +62,7 @@ namespace VSA.Api.Database
             modelBuilder.Entity<Instrument>()
                 .HasOne(i => i.Brand) // Instrument sınıfının Brand navigation property'si ile ilişkiyi belirtiyoruz.
                 .WithMany(b => b.Instruments) // Brand sınıfının Instruments navigation property'si ile ilişkiyi belirtiyoruz.
-                .HasForeignKey(i => i.Id) // Instrument sınıfının BrandId foreign key'ini belirtiyoruz.
+                .HasForeignKey(i => i.BrandId) // Instrument sınıfının BrandId foreign key'ini belirtiyoruz.
                 .OnDelete(DeleteBehavior.Cascade); // Eğer bir Brand silinirse, bağlı Instrument'ları da siler.
 
             base.OnModelCreating(modelBuilder);

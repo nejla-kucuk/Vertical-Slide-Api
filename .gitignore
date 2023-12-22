@@ -400,3 +400,5 @@ VSA.Api/VSA.Api.csproj
 VSA.Api/appsettings.json
 VSA.Api/appsettings.json
 VSA.Api/appsettings.json
+*.json
+VSA.Api/appsettings.json
