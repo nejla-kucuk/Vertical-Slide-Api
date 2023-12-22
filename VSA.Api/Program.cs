@@ -1,4 +1,8 @@
 using Carter;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using VSA.Api.Database;
 using VSA.Api.Features.Brands;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +13,17 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AppDbContext>(options => 
+                                    options.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
+
 builder.Services.AddCarter();
 
-builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(Program).Assembly));
+var assembly = typeof(Program).Assembly;
+
+builder.Services.AddValidatorsFromAssembly(assembly);
+
+builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(assembly));
 
 var app = builder.Build();
 

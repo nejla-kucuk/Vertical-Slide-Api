@@ -1,16 +1,21 @@
 ﻿using Carter;
+using FluentValidation;
+using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Reflection;
+using VSA.Api.Contracts;
 using VSA.Api.Database;
 using VSA.Api.Entities;
+using VSA.Api.Features.Brands;
+using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Brands
 {
     public static class AddBrand
     {
-        public class Command : IRequest<Guid>
+        public class Command : IRequest<Result<Guid>>
         {
             public string Name { get; set; }
 
@@ -19,17 +24,36 @@ namespace VSA.Api.Features.Brands
             public string Address { get; set; }
         }
 
-        internal sealed class Handler : IRequestHandler<Command, Guid>
+        public class Validator : AbstractValidator<Command>
+        {
+            public Validator() {
+
+                RuleFor(x => x.Name).NotEmpty();
+                RuleFor(x => x.DisplayText).NotEmpty();
+                RuleFor(x => x.Address).NotEmpty();
+            }
+        }
+        internal sealed class Handler : IRequestHandler<Command, Result<Guid>>
         {
             private readonly AppDbContext _dbContext;
+            private readonly IValidator<Command> _validator;
 
-            public Handler(AppDbContext dbContext)
+            public Handler(AppDbContext dbContext, IValidator<Command> validator)
             {
                 _dbContext = dbContext;
+                _validator = validator;
             }
 
-            public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Guid>> Handle(Command request, CancellationToken cancellationToken)
             {
+                var validationRequest = _validator.Validate(request);
+                if(!validationRequest.IsValid)
+                {
+                    return Result.Failure<Guid>(new Error(
+                        "AddBrand.Validaion", 
+                        validationResult.ToString()));
+                }
+
                 var brand = new Brand
                 {
                     Id = Guid.NewGuid(),
@@ -47,20 +71,34 @@ namespace VSA.Api.Features.Brands
             }
         }
 
-        public class Endpoint : ICarterModule
+    }
+}
+
+public class AddBrandEndpoint : ICarterModule
+{
+    public void AddRoutes(IEndpointRouteBuilder app)
+    {
+        app.MapPost("api/brands", async (AddBrandRequest request, ISender sender) =>
         {
-            public void AddRoutes(IEndpointRouteBuilder app)
+            var command = request.Adapt<AddBrand.Command>();
+            
+            /*
+            new AddBrand.Command
             {
-                app.MapPost("api/brands", async (Command command, ISender sender) =>
-                {
-                    var brandId = await sender.Send(command);
+                Name = request.Name,
+                DisplayText = request.DisplayText,
+                Address = request.Address
+               };
+            */
 
-                    return Results.Ok(brandId);
-                });
+            var result = await sender.Send(command);
+
+            if (result.IsFailure)
+            {
+                return Results.BadRequest(result.Error);
             }
-        }
 
-
-
+            return Results.Ok(result.Value);
+        });
     }
 }
