@@ -15,8 +15,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+var connectionString = builder.Configuration.GetSection("PostgreSQLDB").Value;
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionStrings:PostgreSQL")));
+{
+    options.UseNpgsql(connectionString);
+});
 
 
 builder.Services.AddCarter();

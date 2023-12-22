@@ -84,7 +84,7 @@ namespace VSA.Api.Features.Brands
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("api/brands/addbrand", async context =>
+            app.MapPost("api/brands", async context =>
             {
                 // Özel tipi çözümleme ve gerekli nesneyi oluşturma
                 var request = await context.Request.ReadFromJsonAsync<AddBrandRequest>();

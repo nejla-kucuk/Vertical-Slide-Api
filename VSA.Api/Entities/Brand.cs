@@ -10,5 +10,7 @@ namespace VSA.Api.Entities
         public string DisplayText { get; set; }
 
         public string Address { get; set; }
+
+        public List<Instrument> Instruments { get; set; }
     }
 }

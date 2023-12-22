@@ -1,4 +1,6 @@
-﻿namespace VSA.Api.Contracts
+﻿using System.Diagnostics.Metrics;
+
+namespace VSA.Api.Contracts
 {
     public class BrandResponse
     {
@@ -11,6 +13,8 @@
         public string Address { get; set; }
 
         public DateTime CreatedOnUtc { get; set; }
+
+        public List<Instrument> Instruments { get; set; }
 
     }
 }
