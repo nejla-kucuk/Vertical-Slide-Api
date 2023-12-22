@@ -2,21 +2,20 @@
 using FluentValidation;
 using Mapster;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http.HttpResults;
+using System.Net;
 using System.Reflection;
 using VSA.Api.Contracts;
 using VSA.Api.Database;
 using VSA.Api.Entities;
-using VSA.Api.Features.Brands;
 using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Brands
 {
     public static class AddBrand
     {
-        public class Command : IRequest<Result<Guid>>
-        {
+        public class Command : IRequest<BrandResponse>
+        { 
+
             public string Name { get; set; }
 
             public string DisplayText { get; set; }
@@ -24,16 +23,19 @@ namespace VSA.Api.Features.Brands
             public string Address { get; set; }
         }
 
+
         public class Validator : AbstractValidator<Command>
         {
-            public Validator() {
+            public Validator()
+            {
 
                 RuleFor(x => x.Name).NotEmpty();
                 RuleFor(x => x.DisplayText).NotEmpty();
                 RuleFor(x => x.Address).NotEmpty();
             }
         }
-        internal sealed class Handler : IRequestHandler<Command, Result<Guid>>
+
+        internal sealed class Handler : IRequestHandler<Command, BrandResponse>
         {
             private readonly AppDbContext _dbContext;
             private readonly IValidator<Command> _validator;
@@ -44,14 +46,14 @@ namespace VSA.Api.Features.Brands
                 _validator = validator;
             }
 
-            public async Task<Result<Guid>> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<BrandResponse> Handle(Command request, CancellationToken cancellationToken)
             {
                 var validationRequest = _validator.Validate(request);
-                if(!validationRequest.IsValid)
+                if (!validationRequest.IsValid)
                 {
-                    return Result.Failure<Guid>(new Error(
-                        "AddBrand.Validaion", 
-                        validationResult.ToString()));
+                    throw new ErrorException(
+                        "AddBrand.Validaion",
+                        "Values are not empty.");
                 }
 
                 var brand = new Brand
@@ -67,38 +69,43 @@ namespace VSA.Api.Features.Brands
 
                 await _dbContext.SaveChangesAsync(cancellationToken);
 
-                return brand.Id;
+                var brandResponse = new BrandResponse
+                {
+                    Id = brand.Id
+                };
+
+                return brandResponse;
             }
+
+        }
+    }
+
+    public class AddBrandEndpoint : ICarterModule
+    {
+        public void AddRoutes(IEndpointRouteBuilder app)
+        {
+            app.MapPost("api/brands/addbrand", async context =>
+            {
+                // Özel tipi çözümleme ve gerekli nesneyi oluşturma
+                var request = await context.Request.ReadFromJsonAsync<AddBrandRequest>();
+                var command = request.Adapt<AddBrand.Command>();
+
+                var sender = context.RequestServices.GetRequiredService<ISender>();
+
+                var result = await sender.Send(command);
+
+                if (result is null)
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    await context.Response.WriteAsJsonAsync(new { Error = "Result.Null" });
+                }
+                else
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.OK;
+                    await context.Response.WriteAsJsonAsync(result);
+                }
+            });
         }
 
-    }
-}
-
-public class AddBrandEndpoint : ICarterModule
-{
-    public void AddRoutes(IEndpointRouteBuilder app)
-    {
-        app.MapPost("api/brands", async (AddBrandRequest request, ISender sender) =>
-        {
-            var command = request.Adapt<AddBrand.Command>();
-            
-            /*
-            new AddBrand.Command
-            {
-                Name = request.Name,
-                DisplayText = request.DisplayText,
-                Address = request.Address
-               };
-            */
-
-            var result = await sender.Send(command);
-
-            if (result.IsFailure)
-            {
-                return Results.BadRequest(result.Error);
-            }
-
-            return Results.Ok(result.Value);
-        });
     }
 }

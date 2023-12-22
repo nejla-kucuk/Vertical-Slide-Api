@@ -7,5 +7,6 @@
         public string DisplayText { get; set; }
 
         public string Address { get; set; }
+       
     }
 }

@@ -12,6 +12,5 @@
 
         public DateTime CreatedOnUtc { get; set; }
 
-        public DateTime? PublishedOnUtc { get; set; }
     }
 }

@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+VSA.Api/VSA.Api.csproj
+VSA.Api/appsettings.json
+VSA.Api/appsettings.json

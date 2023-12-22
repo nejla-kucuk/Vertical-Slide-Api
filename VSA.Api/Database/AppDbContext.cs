@@ -1,23 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 using VSA.Api.Entities;
+using System.Reflection;
 
 namespace VSA.Api.Database
 {
     public class AppDbContext : DbContext
     {
-        DbSet<Instrument> Instruments { get; set; }
+        public DbSet<Instrument> Instruments { get; set; }
 
-        DbSet<Brand> Brands { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Instrument>(builder =>
-                            builder.OwnsOne(a => a.Id, tagsBuilder => tagsBuilder.ToJson()));
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            modelBuilder.Entity<Brand>(builder =>
-                            builder.OwnsOne(a => a.Id, tagsBuilder => tagsBuilder.ToJson()));
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

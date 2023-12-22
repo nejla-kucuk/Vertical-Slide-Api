@@ -1,19 +1,22 @@
 ﻿using Carter;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 using VSA.Api.Contracts;
 using VSA.Api.Database;
+using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Brands
 {
     public static class GetBrandById
     {
-        public class Query : IRequest<Result<BrandResponse>>
+        public class Query : IRequest<BrandResponse>
         {
            public Guid Id { get; set; }     
         }
 
-        internal sealed class Handler: IRequestHandler<Query, <Result<BrandResponse>>
+        internal sealed class Handler: IRequestHandler<Query, BrandResponse>
         {
             private readonly AppDbContext _dbContext;
 
@@ -22,7 +25,7 @@ namespace VSA.Api.Features.Brands
                 _dbContext = dbContext;
             }
 
-            public async Task<Result<BrandResponse>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<BrandResponse> Handle(Query request, CancellationToken cancellationToken)
             {
                 var brandResponse = await _dbContext
                     .Brands
@@ -31,19 +34,18 @@ namespace VSA.Api.Features.Brands
                     {
                         Id = brand.Id,
                         Name = brand.Name,
-                        DisplayText = brand.DisplayName,
+                        DisplayText = brand.DisplayText,
                         Address = brand.Address,
-                        CreatedOnUtc = brand.CreatedOnUtc,
-                        PublishedOnUtc = brand.PublishedOnUtc
+                        CreatedOnUtc = brand.CreatedOn
 
                     })
                     .FirstOrDefaultAsync(cancellationToken);
 
                 if(brandResponse is null)
                 {
-                    return Result.Failure<BrandResponse>(new Error(
-                        "GetBrandById.Null",
-                        "ERROR: The brand with the specified ID was not found!"));
+                    throw new ErrorException(
+                                "GetBrandById.Null",
+                                "ERROR: The brand with the specified ID was not found!");
                 }
 
                 return brandResponse;
@@ -58,21 +60,26 @@ namespace VSA.Api.Features.Brands
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-           app.MapGet("api/brands/{id}", async(Guid id, ISender sender)=> { 
-           
+            app.MapGet("api/brands/{id}", async (Guid id, HttpContext context) =>
+            {
                 var query = new GetBrandById.Query { Id = id };
 
-               var result = await sender.Send(query);
+                var sender = context.RequestServices.GetRequiredService<ISender>();
 
-               if (result.IsFailure)
-               {
-                   return Results.NotFound(result.Error);
-               }
+                var result = await sender.Send(query);
 
-               return Results.Ok(result);
-           });
-
-
+                if (result is null)
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    await context.Response.WriteAsJsonAsync(new { Error = "Result.Null" });
+                }
+                else
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.OK;
+                    await context.Response.WriteAsJsonAsync(result);
+                }
+            });
         }
     }
+
 }
