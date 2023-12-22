@@ -1,13 +1,15 @@
 using Carter;
 using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using VSA.Api;
 using VSA.Api.Database;
-using VSA.Api.Features.Brands;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 
@@ -25,15 +27,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 
-
-
 var assembly = typeof(Program).Assembly;
 
 builder.Services.AddValidatorsFromAssembly(assembly);
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-
-
+// ConfigureServices metodu için Startup sýnfýný kullan
+var startup = new Startup(builder.Configuration);
+startup.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
