@@ -17,7 +17,7 @@ namespace VSA.Api.Controllers.Brands
 
 
         [HttpPost]
-        public ActionResult<BrandResponse> AddBook([FromBody] AddBrandRequest request)
+        public ActionResult<BrandResponse> AddBrand([FromBody] AddBrandRequest request)
         {
 
             var response = _mediator.Send(request);
