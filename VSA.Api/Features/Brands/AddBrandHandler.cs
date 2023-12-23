@@ -11,8 +11,9 @@ using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Brands
 {
-    public static class AddBrand
+    public static class AddBrandHandler
     {
+
         public class Command : IRequest<BrandResponse>
         { 
 
