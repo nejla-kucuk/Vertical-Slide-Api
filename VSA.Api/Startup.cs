@@ -3,7 +3,9 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using static VSA.Api.Features.Brands.AddBrand;
+using VSA.Api.Contracts;
+using VSA.Api.Features.Brands;
+
 
 namespace VSA.Api
 {
@@ -27,8 +29,8 @@ namespace VSA.Api
             // MediatR'ı ekleyin
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            services.AddMediatR(typeof(AddBrandRequestHandler).Assembly);
 
+            services.AddMediatR(typeof(Startup).Assembly);
 
 
         }
