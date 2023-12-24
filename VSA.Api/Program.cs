@@ -1,15 +1,15 @@
-using Carter;
+
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using VSA.Api;
 using VSA.Api.Database;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
-
 
 // Add services to the container.
 
@@ -31,9 +31,7 @@ var assembly = typeof(Program).Assembly;
 
 builder.Services.AddValidatorsFromAssembly(assembly);
 
-// ConfigureServices metodu için Startup sýnfýný kullan
-var startup = new Startup(builder.Configuration);
-startup.ConfigureServices(builder.Services);
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
