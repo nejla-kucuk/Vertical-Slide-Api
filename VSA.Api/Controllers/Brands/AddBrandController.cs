@@ -1,11 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VSA.Api.Contracts;
+using VSA.Api.Features.Brands.Command;
+using VSA.Api.Features.Brands.Models;
+
 
 namespace VSA.Api.Controllers.Brands
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AddBrandController : Controller
     {
         private readonly IMediator _mediator;
@@ -17,8 +19,8 @@ namespace VSA.Api.Controllers.Brands
 
 
         [HttpPost]
-        public ActionResult<BrandResponse> AddBrand([FromBody] AddBrandRequest request)
-        {
+        public ActionResult<AddBrandModel> AddBrand([FromBody] AddBrand request)
+        { 
 
             var response = _mediator.Send(request);
 
