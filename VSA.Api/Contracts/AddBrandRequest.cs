@@ -2,7 +2,7 @@
 
 namespace VSA.Api.Contracts
 {
-    public class AddBrandRequest : IRequest<BrandResponse>
+    public class AddBrandRequest 
     { 
        
         public string Name { get; set; }
