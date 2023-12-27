@@ -2,7 +2,7 @@
 using MediatR;
 using VSA.Api.Database;
 using VSA.Api.Entities;
-using VSA.Api.Features.Brands.Models.Brands;
+using VSA.Api.Features.Brands.Models;
 using VSA.Api.Shared;
 
 
