@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using VSA.Api.Database;
-using VSA.Api.Features.Brands.Models.Brands;
+using VSA.Api.Features.Brands.Models;
 using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Brands.Queries

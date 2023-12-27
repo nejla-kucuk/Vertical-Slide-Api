@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using VSA.Api.Database;
 using VSA.Api.Features.Brands.Command;
-using VSA.Api.Features.Brands.Models.Brands;
+using VSA.Api.Features.Brands.Models;
 
 namespace VSA.Api.Features.Brands.Queries
 {
