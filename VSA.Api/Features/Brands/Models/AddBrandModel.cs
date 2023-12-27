@@ -1,6 +1,8 @@
-﻿namespace VSA.Api.Features.Brands.Models.Brands
+﻿using System.Diagnostics.Metrics;
+
+namespace VSA.Api.Features.Brands.Models
 {
-    public class GetAllBrandsModel
+    public class AddBrandModel
     {
         public Guid Id { get; set; }
 
@@ -11,5 +13,9 @@
         public string Address { get; set; }
 
         public DateTime CreatedOnUtc { get; set; }
+
+
     }
+
+
 }
