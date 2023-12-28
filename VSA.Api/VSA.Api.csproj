@@ -31,8 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Instrument\Command\" />
-    <Folder Include="Features\Instrument\Models\" />
     <Folder Include="Features\Instrument\Queries\" />
   </ItemGroup>
 
