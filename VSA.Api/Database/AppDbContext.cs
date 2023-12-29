@@ -8,7 +8,7 @@ namespace VSA.Api.Database
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Instrument> Instruments { get; set; }
+        public DbSet<Instruments> Instruments { get; set; }
 
         public DbSet<Brand> Brands { get; set; }
 
@@ -39,27 +39,27 @@ namespace VSA.Api.Database
                 .HasForeignKey(i => i.BrandId); // Instrument sınıfının BrandId foreign key'ini belirtiyoruz.
 
 
-            modelBuilder.Entity<Instrument>()
+            modelBuilder.Entity<Instruments>()
                 .HasKey(i => i.Id); // Instrument sınıfının anahtar alanını belirtiyoruz.
 
-            modelBuilder.Entity<Instrument>()
+            modelBuilder.Entity<Instruments>()
                 .Property(i => i.Model)
                 .IsRequired(); // Model alanının zorunlu olduğunu belirtiyoruz.
 
-            modelBuilder.Entity<Instrument>()
+            modelBuilder.Entity<Instruments>()
                 .Property(i => i.Color)
                 .IsRequired(); // Color alanının zorunlu olduğunu belirtiyoruz.
 
-            modelBuilder.Entity<Instrument>()
+            modelBuilder.Entity<Instruments>()
                 .Property(i => i.ProductionYear)
                 .HasColumnType("date"); // ProductionYear alanının tipini belirtiyoruz, örneğin date tipi.
 
-            modelBuilder.Entity<Instrument>()
+            modelBuilder.Entity<Instruments>()
                 .Property(i => i.Price)
                 .HasColumnType("decimal(18,2)") // Price alanının tipini ve precision/scale değerlerini belirtiyoruz.
                 .IsRequired(); // Price alanının zorunlu olduğunu belirtiyoruz.
 
-            modelBuilder.Entity<Instrument>()
+            modelBuilder.Entity<Instruments>()
                 .HasOne(i => i.Brand) // Instrument sınıfının Brand navigation property'si ile ilişkiyi belirtiyoruz.
                 .WithMany(b => b.Instruments) // Brand sınıfının Instruments navigation property'si ile ilişkiyi belirtiyoruz.
                 .HasForeignKey(i => i.BrandId) // Instrument sınıfının BrandId foreign key'ini belirtiyoruz.
