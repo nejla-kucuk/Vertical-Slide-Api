@@ -11,6 +11,6 @@ namespace VSA.Api.Entities
 
         public string Address { get; set; }
 
-        public List<Instrument> Instruments { get; set; }
+        public List<Instruments> Instruments { get; set; }
     }
 }

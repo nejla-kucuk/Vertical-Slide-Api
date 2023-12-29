@@ -2,7 +2,7 @@
 
 namespace VSA.Api.Entities
 {
-    public class Instrument : EntityBase<Guid>
+    public class Instruments : EntityBase<Guid>
     {
         
         public Brand Brand { get; set; } //Entity
