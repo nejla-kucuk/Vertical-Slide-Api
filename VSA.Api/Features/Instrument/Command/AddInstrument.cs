@@ -1,8 +1,11 @@
 ﻿using FluentValidation;
 using MediatR;
+using System.Diagnostics.Metrics;
 using VSA.Api.Database;
+using VSA.Api.Entities;
 using VSA.Api.Features.Brands.Command;
 using VSA.Api.Features.Instrument.Models;
+using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Instrument.Command
 {
@@ -45,7 +48,45 @@ namespace VSA.Api.Features.Instrument.Command
 
         public Task<AddInstrumentModel> Handle(AddInstrument request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var validationRequest = _validator.Validate(request);
+            if (!validationRequest.IsValid)
+            {
+                throw new ErrorException(
+                    "AddInstrument.Validaion",
+                    "Values are not empty.");
+            }
+
+            
+            var instrument = new Instruments
+            {
+                Id = Guid.NewGuid(),
+                BrandId = request.BrandId,
+                Model = request.Model,
+                Color = request.Color,
+                ProductionYear = request.ProductionYear,
+                Price = request.Price,
+                CreatedOn = DateTime.UtcNow
+            };
+
+            if (instrument.Brand.Id == request.BrandId) {
+
+                _dbContext.Instruments.Add(instrument);
+
+                _dbContext.SaveChangesAsync(cancellationToken);
+            }
+
+            var InstrumentResponse = new AddInstrumentModel
+            {
+               BrandId = instrument.BrandId,
+               Model = instrument.Model,
+               Color = instrument.Color,
+               ProductionYear = instrument.ProductionYear,
+               Price = instrument.Price
+            };
+
+
+
+            return Task.FromResult(InstrumentResponse);
         }
     }
 
