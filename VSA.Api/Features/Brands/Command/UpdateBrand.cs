@@ -61,6 +61,7 @@ namespace VSA.Api.Features.Brands.Command
             brandToUpdate.Name = request.Name;
             brandToUpdate.DisplayText = request.DisplayText;
             brandToUpdate.Address = request.Address;
+            brandToUpdate.ModifiedOn = DateTime.UtcNow;
 
             
             _dbContext.SaveChangesAsync();
