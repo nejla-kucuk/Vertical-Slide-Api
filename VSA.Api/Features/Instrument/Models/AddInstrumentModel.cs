@@ -2,6 +2,8 @@
 {
     public class AddInstrumentModel
     {
+        public Guid Id {  get; set; }
+
         public Guid BrandId { get; set; }
 
         public string Model { get; set; }
