@@ -10,6 +10,5 @@
 
         public string Address { get; set; }
 
-        public DateTime DeletedOn { get; set; }
     }
 }

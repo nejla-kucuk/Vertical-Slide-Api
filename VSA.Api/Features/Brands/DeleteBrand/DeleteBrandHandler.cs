@@ -18,14 +18,43 @@ namespace VSA.Api.Features.Brands.DeleteBrand
 
         public Task<DeleteBrandResponse> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
         {
-            var isTrue = _util.isBrandExist(request.Id);
+
+           
+                var brandExists = _util.BrandIdExist(request.Id);
+
+                var BrandResponse = new DeleteBrandResponse
+                {
+                    
+                };
+
+                if (brandExists)
+                {
+                    var brand =  _dbContext.Brands.FindAsync(request.Id);
+                    _dbContext.Brands.Remove(brand);
+                    _dbContext.SaveChangesAsync(cancellationToken);
+                }
+                else
+                {
+                    throw new ErrorException(
+                        "DeleteBrand.NotFoundBrandId",
+                        "Not Found Brand Id! :) ");
+                }
+
+                // ... BrandResponse'i kullanarak işlemleri tamamlayabilirsiniz
+
+                return BrandResponse;
+            }
+
+
+
+            aw_util.BrandIdExist(request.Id);
 
             var BrandResponse = new DeleteBrandResponse
             {
-
+                
             };
 
-            if(isTrue)
+            if(BrandId)
             {
                 _dbContext.Remove(request.Id);
                 _dbContext.SaveChangesAsync(cancellationToken);
@@ -38,7 +67,6 @@ namespace VSA.Api.Features.Brands.DeleteBrand
             }
 
             
-
 
         }
 
