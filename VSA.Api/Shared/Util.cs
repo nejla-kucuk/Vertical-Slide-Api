@@ -1,4 +1,6 @@
-﻿using VSA.Api.Infrastructure.Database;
+﻿using MediatR;
+using VSA.Api.Entities;
+using VSA.Api.Infrastructure.Database;
 
 namespace VSA.Api.Shared
 {
@@ -12,10 +14,11 @@ namespace VSA.Api.Shared
 
         }
 
-        public bool isBrandExist(Guid id)
+        public async Task<bool> BrandIdExist(Guid Id)
         {
-           _dbContext.Brands.Any(b => b.Id == id);
-
+            var brand = await _dbContext.Brands.FindAsync(Id);
+            return brand != null;
         }
+
     }
 }
