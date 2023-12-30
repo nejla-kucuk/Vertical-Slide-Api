@@ -1,6 +1,6 @@
-﻿namespace VSA.Api.Features.Brands.Models
+﻿namespace VSA.Api.Features.Brands.DeleteBrand
 {
-    public class GetAllBrandsModel
+    public class DeleteBrandResponse
     {
         public Guid Id { get; set; }
 
@@ -10,6 +10,6 @@
 
         public string Address { get; set; }
 
-        public DateTime CreatedOnUtc { get; set; }
+        public DateTime DeletedOn { get; set; }
     }
 }

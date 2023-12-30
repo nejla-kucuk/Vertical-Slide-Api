@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 
 
-namespace VSA.Api.Database
+namespace VSA.Api.Infrastructure.Database
 {
     public class AppDbContext : DbContext
     {

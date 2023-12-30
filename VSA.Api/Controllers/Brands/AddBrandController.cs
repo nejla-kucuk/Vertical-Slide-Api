@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VSA.Api.Features.Brands.Command;
-using VSA.Api.Features.Brands.Models;
+using VSA.Api.Features.Brands.AddBrand;
 
 namespace VSA.Api.Controllers.Brands
 {
@@ -18,7 +17,7 @@ namespace VSA.Api.Controllers.Brands
 
 
         [HttpPost]
-        public ActionResult<AddBrandModel> AddBrand([FromBody] AddBrand request)
+        public ActionResult<AddBrandResponse> AddBrand([FromBody] AddBrand request)
         { 
 
             var response = _mediator.Send(request);

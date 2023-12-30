@@ -1,17 +1,11 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using VSA.Api.Database;
-using VSA.Api.Features.Brands.Command;
-using VSA.Api.Features.Brands.Models;
+using VSA.Api.Infrastructure.Database;
 
-namespace VSA.Api.Features.Brands.Queries
+namespace VSA.Api.Features.Brands.GetAllBrand
 {
-    public class GetAllBrands : IRequest<List<GetAllBrandsModel>>
-    {
 
-    }
-
-    public class GetAllBrandsHandler : IRequestHandler<GetAllBrands, List<GetAllBrandsModel>>
+    public class GetAllBrandsHandler : IRequestHandler<GetAllBrandsQuery, List<GetAllBrandResponse>>
     {
         private readonly AppDbContext _dbContext;
 
@@ -21,11 +15,11 @@ namespace VSA.Api.Features.Brands.Queries
 
         }
 
-        public async Task<List<GetAllBrandsModel>> Handle(GetAllBrands request, CancellationToken cancellationToken)
+        public async Task<List<GetAllBrandResponse>> Handle(GetAllBrandsQuery request, CancellationToken cancellationToken)
         {
             var brands = await _dbContext.Brands.ToListAsync(cancellationToken);
 
-            var result = brands.Select(brand => new GetAllBrandsModel
+            var result = brands.Select(brand => new GetAllBrandResponse
             {
                 Id = brand.Id,
                 Name = brand.Name,
@@ -39,3 +33,5 @@ namespace VSA.Api.Features.Brands.Queries
 
     }
 }
+
+    

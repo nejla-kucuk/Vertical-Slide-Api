@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace VSA.Api.Database
+namespace VSA.Api.Infrastructure.Database
 {
     public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {

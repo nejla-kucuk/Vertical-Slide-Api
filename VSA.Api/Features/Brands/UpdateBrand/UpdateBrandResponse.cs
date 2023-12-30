@@ -1,15 +1,12 @@
-﻿using MediatR;
-
-namespace VSA.Api.Contracts
+﻿namespace VSA.Api.Features.Brands.UpdateBrand
 {
-    public class AddBrandRequest 
-    { 
-       
+    public class UpdateBrandResponse
+    {
+
         public string Name { get; set; }
 
         public string DisplayText { get; set; }
 
         public string Address { get; set; }
-       
     }
 }

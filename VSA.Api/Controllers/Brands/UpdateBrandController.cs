@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using VSA.Api.Features.Brands.Command;
-using VSA.Api.Features.Brands.Models;
 using VSA.Api.Features.Brands.Queries;
+using VSA.Api.Features.Brands.UpdateBrand;
 
 namespace VSA.Api.Controllers.Brands
 {
@@ -19,7 +18,7 @@ namespace VSA.Api.Controllers.Brands
         }
 
         [HttpPost]
-        public ActionResult<UpdateBrandModel> GetBrandById([FromBody] UpdateBrand request)
+        public ActionResult<UpdateBrandResponse> GetBrandById([FromBody] UpdateBrandCommand request)
         {
            
             var response = _mediator.Send(request);

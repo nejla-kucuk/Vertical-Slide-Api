@@ -1,9 +1,11 @@
-﻿using VSA.Api.Entities;
+﻿using System.Diagnostics.Metrics;
 
-namespace VSA.Api.Features.Brands.Models
+namespace VSA.Api.Features.Brands.AddBrand
 {
-    public class GetBrandByIdModel
+    public class AddBrandResponse
     {
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
 
         public string DisplayText { get; set; }
@@ -12,6 +14,8 @@ namespace VSA.Api.Features.Brands.Models
 
         public DateTime CreatedOnUtc { get; set; }
 
-        // List<Instrument> Instruments { get; set; }
+
     }
+
+
 }
