@@ -8,6 +8,5 @@
 
         public DateTime? ModifiedOn { get; set; }
 
-        public DateTime? DeletedOn { get; set; }
     }
 }
