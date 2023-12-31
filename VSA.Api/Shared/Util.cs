@@ -11,7 +11,6 @@ namespace VSA.Api.Shared
         public Util(AppDbContext dbContext)
         {
             _dbContext = dbContext;
-
         }
 
         public async Task<bool> BrandIdExist(Guid Id)
