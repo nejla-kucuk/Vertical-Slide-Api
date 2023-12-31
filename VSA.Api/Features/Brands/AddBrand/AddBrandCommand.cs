@@ -1,8 +1,4 @@
-﻿using FluentValidation;
-using MediatR;
-using VSA.Api.Database;
-using VSA.Api.Entities;
-using VSA.Api.Shared;
+﻿using MediatR;
 
 
 namespace VSA.Api.Features.Brands.AddBrand
