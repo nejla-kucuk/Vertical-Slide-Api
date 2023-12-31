@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
-using System.Diagnostics.Metrics;
 using VSA.Api.Entities;
-using VSA.Api.Features.Brands.Command;
 using VSA.Api.Features.Instrument.Models;
 using VSA.Api.Infrastructure.Database;
 using VSA.Api.Shared;

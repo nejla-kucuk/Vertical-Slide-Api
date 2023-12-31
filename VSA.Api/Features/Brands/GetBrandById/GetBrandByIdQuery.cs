@@ -1,8 +1,5 @@
-﻿using FluentValidation;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using VSA.Api.Database;
-using VSA.Api.Shared;
+﻿using MediatR;
+
 
 namespace VSA.Api.Features.Brands.GetBrandById
 {
