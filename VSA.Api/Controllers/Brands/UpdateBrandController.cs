@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using VSA.Api.Features.Brands.Queries;
 using VSA.Api.Features.Brands.UpdateBrand;
 
 namespace VSA.Api.Controllers.Brands

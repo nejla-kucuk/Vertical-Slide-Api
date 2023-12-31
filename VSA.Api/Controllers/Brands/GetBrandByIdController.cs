@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using VSA.Api.Features.Brands.GetBrandById;
-using VSA.Api.Features.Brands.Queries;
+
 
 namespace VSA.Api.Controllers.Brands
 {

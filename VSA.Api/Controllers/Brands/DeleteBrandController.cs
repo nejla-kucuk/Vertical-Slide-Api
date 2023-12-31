@@ -1,24 +1,24 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VSA.Api.Features.Brands.AddBrand;
+using VSA.Api.Features.Brands.DeleteBrand;
 
 namespace VSA.Api.Controllers.Brands
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class AddBrandController : Controller
+    [ApiController]
+    public class DeleteBrandController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public AddBrandController(IMediator mediator)
+        public DeleteBrandController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
 
         [HttpPost]
-        public ActionResult<AddBrandResponse> AddBrand([FromBody] AddBrandCommand request)
-        { 
+        public ActionResult<DeleteBrandResponse> DeleteBrand([FromBody] DeleteBrandCommand request)
+        {
 
             var response = _mediator.Send(request);
 

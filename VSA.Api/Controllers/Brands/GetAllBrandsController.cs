@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VSA.Api.Features.Brands.GetAllBrand;
-using VSA.Api.Features.Brands.Queries;
+
 
 namespace VSA.Api.Controllers.Brands
 {
