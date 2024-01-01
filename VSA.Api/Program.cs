@@ -3,9 +3,6 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using VSA.Api;
 using VSA.Api.Infrastructure.Database;
 
 
