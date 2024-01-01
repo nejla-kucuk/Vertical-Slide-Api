@@ -35,9 +35,6 @@ namespace VSA.Api.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("DisplayText")
                         .IsRequired()
                         .HasColumnType("text");
@@ -54,7 +51,7 @@ namespace VSA.Api.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("VSA.Api.Entities.Instrument", b =>
+            modelBuilder.Entity("VSA.Api.Entities.Instruments", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,9 +65,6 @@ namespace VSA.Api.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Model")
@@ -93,7 +87,7 @@ namespace VSA.Api.Migrations
                     b.ToTable("Instruments");
                 });
 
-            modelBuilder.Entity("VSA.Api.Entities.Instrument", b =>
+            modelBuilder.Entity("VSA.Api.Entities.Instruments", b =>
                 {
                     b.HasOne("VSA.Api.Entities.Brand", "Brand")
                         .WithMany("Instruments")
