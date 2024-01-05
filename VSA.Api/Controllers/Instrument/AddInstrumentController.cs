@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VSA.Api.Features.Instrument.Command;
-using VSA.Api.Features.Instrument.Models;
+using VSA.Api.Features.Instrument.AddInstrument;
 
 namespace VSA.Api.Controllers.Instrument
 {
@@ -19,7 +18,7 @@ namespace VSA.Api.Controllers.Instrument
 
 
         [HttpPost]
-        public ActionResult<AddInstrumentModel> AddBrand([FromBody] AddInstrument request)
+        public ActionResult<AddInstrumentResponse> AddBrand([FromBody] AddInstrumentCommand request)
         {
 
             var response = _mediator.Send(request);
