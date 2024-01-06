@@ -5,7 +5,7 @@ namespace VSA.Api.Entities
     public class Instruments : EntityBase<Guid>
     {
         
-        public Brand Brand { get; set; } = new Brand();
+        public Brand Brand { get; set; } 
 
         public Guid BrandId { get; set; } = Guid.Empty;
 
