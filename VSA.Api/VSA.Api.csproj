@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Deneme123\**" />
+    <Content Remove="Deneme123\**" />
+    <EmbeddedResource Remove="Deneme123\**" />
+    <None Remove="Deneme123\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Carter" Version="7.1.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="MediatR" Version="11.0.0" />

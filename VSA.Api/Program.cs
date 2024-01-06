@@ -1,4 +1,5 @@
 
+using Carter;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,8 @@ builder.Services.AddValidatorsFromAssembly(assembly);
 
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
+builder.Services.AddCarter();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,5 +47,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapCarter();
 
 app.Run();
