@@ -8,7 +8,6 @@ namespace VSA.Api.Features.Brands.AddBrand
         {
             public Validator()
             {
-
                 RuleFor(x => x.Name).NotEmpty();
                 RuleFor(x => x.DisplayText).NotEmpty();
                 RuleFor(x => x.Address).NotEmpty();
