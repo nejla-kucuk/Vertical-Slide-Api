@@ -1,4 +1,6 @@
-﻿namespace VSA.Api.Features.Brands.GetAllBrand
+﻿using VSA.Api.Entities;
+
+namespace VSA.Api.Features.Brands.GetAllBrand
 {
     public class GetAllBrandResponse
     {
@@ -11,5 +13,7 @@
         public string Address { get; set; }
 
         public DateTime CreatedOnUtc { get; set; }
+
+        public List<Instruments> Instruments { get; set; }
     }
 }
