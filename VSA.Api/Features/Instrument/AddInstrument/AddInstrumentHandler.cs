@@ -39,13 +39,12 @@ namespace VSA.Api.Features.Instrument.AddInstrument
                 CreatedOn = DateTime.UtcNow
             };
 
-            if (instrument.Brand.Id == request.BrandId)
-            {
+            
 
-                _dbContext.Instruments.Add(instrument);
+            _dbContext.Instruments.Add(instrument);
 
-                _dbContext.SaveChangesAsync(cancellationToken);
-            }
+            _dbContext.SaveChangesAsync(cancellationToken);
+            
 
             var InstrumentResponse = new AddInstrumentResponse
             {
@@ -61,3 +60,5 @@ namespace VSA.Api.Features.Instrument.AddInstrument
             return Task.FromResult(InstrumentResponse);
         }
     }
+
+}
