@@ -8,7 +8,7 @@ namespace VSA.Api.Features.Instrument.DeleteInstrument
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("api/deleteinstrument", async (DeleteInstrumentCommand command, ISender sender) =>
+            app.MapPost("api/DeleteInstrument", async (DeleteInstrumentCommand command, ISender sender) =>
             {
                 var response = await sender.Send(command);
 
