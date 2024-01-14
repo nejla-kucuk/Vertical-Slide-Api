@@ -31,7 +31,7 @@ namespace VSA.Api.Features.Instrument.GetAllInstrument
                BrandName = instrument.Brand.Name,
                BrandDisplayText = instrument.Brand.DisplayText,
                BrandAddress = instrument.Brand.Address,
-                Model = instrument.Model,
+               Model = instrument.Model,
                Color = instrument.Color,
                ProductionYear = instrument.ProductionYear,
                Price = instrument.Price
