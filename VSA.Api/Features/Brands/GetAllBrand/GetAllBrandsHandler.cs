@@ -29,16 +29,16 @@ namespace VSA.Api.Features.Brands.GetAllBrand
                 DisplayText = brand.DisplayText,
                 Address = brand.Address,
                 CreatedOnUtc = brand.CreatedOn,
-                Instruments = new List<Instruments>
-                {
-                    new Instruments
-                    {
-                        Model = instrument.Model,
-                        Color = instrument.Color,
-                        Price = instrument.Price
+               
+                  
+                    
+               InstrumentModel = instrument.Model,
+               InstrumentColor = instrument.Color,
+               InstrumentProductionYear = instrument.ProductionYear,
+               InstrumentPrice = instrument.Price
                         
-                    }
-                }
+                    
+                
             })).ToList();
 
             return result;
