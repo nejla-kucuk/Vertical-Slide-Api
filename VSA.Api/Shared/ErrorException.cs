@@ -12,10 +12,7 @@
           
         }
 
-        public static ErrorException NotFound(string code, string resourceName)
-        {
-            return new ErrorException(code, $"{resourceName} not found.");
-        }
+       
 
         private ErrorException()
         {
