@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using VSA.Api.Features.Brands.UpdateBrand;
 using VSA.Api.Infrastructure.Database;
 using VSA.Api.Shared;
 
@@ -8,16 +9,28 @@ namespace VSA.Api.Features.Instrument.UpdateInstrument
     public class UpdateInstrumentHandler : IRequestHandler<UpdateInstrumentCommand, UpdateInstrumentResponse>
     {
         private readonly AppDbContext _dbContext;
-       
+        private readonly IValidator<UpdateInstrumentCommand> _validator;
 
-        public UpdateInstrumentHandler(AppDbContext dbContext)
+
+        public UpdateInstrumentHandler(AppDbContext dbContext, IValidator<UpdateInstrumentCommand> validator)
         {
             _dbContext = dbContext;
+            _validator = validator;
             
         }
 
         public async Task<UpdateInstrumentResponse> Handle(UpdateInstrumentCommand request, CancellationToken cancellationToken)
         {
+
+            var validationRequest = _validator.Validate(request);
+            if (!validationRequest.IsValid)
+            {
+                throw new ErrorException(
+                    "UpdateInstrument.Validation",
+                    "Values are not empty.");
+            }
+
+
 
             var instrumentToUpdate = _dbContext.Instruments.Find(request.Id);
             if (instrumentToUpdate is null)
