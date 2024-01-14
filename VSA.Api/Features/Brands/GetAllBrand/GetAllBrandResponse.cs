@@ -14,6 +14,9 @@ namespace VSA.Api.Features.Brands.GetAllBrand
 
         public DateTime CreatedOnUtc { get; set; }
 
-        public List<Instruments> Instruments { get; set; }
+        public string InstrumentModel { get; set; }
+        public string InstrumentColor { get; set; }
+        public DateTime? InstrumentProductionYear { get; set; }
+        public decimal InstrumentPrice { get; set; }
     }
 }
