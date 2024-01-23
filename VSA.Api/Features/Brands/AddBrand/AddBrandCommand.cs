@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using VSA.Api.Shared;
 
 
 namespace VSA.Api.Features.Brands.AddBrand
@@ -9,7 +10,7 @@ namespace VSA.Api.Features.Brands.AddBrand
 
         public string DisplayText { get; set; }
 
-        public string Address { get; set; }
+        public string Address { get; set; }  
     }
 
 }

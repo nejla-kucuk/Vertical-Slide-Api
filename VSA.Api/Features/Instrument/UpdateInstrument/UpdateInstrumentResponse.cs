@@ -1,6 +1,6 @@
 ﻿namespace VSA.Api.Features.Instrument.UpdateInstrument
 {
-    public class UpdateInstrumentResponse
+    public record UpdateInstrumentResponse
     {
         public Guid BrandId { get; set; } = Guid.Empty;
 

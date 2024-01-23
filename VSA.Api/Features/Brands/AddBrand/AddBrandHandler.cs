@@ -26,7 +26,7 @@ namespace VSA.Api.Features.Brands.AddBrand
             if (!validationRequest.IsValid)
             {
                 throw new ErrorException(
-                    "AddBrand.Validaion",
+                    "AddBrand.Validation",
                     "Values are not empty.");
             }
 

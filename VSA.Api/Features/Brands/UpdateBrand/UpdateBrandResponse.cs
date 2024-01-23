@@ -1,6 +1,6 @@
 ﻿namespace VSA.Api.Features.Brands.UpdateBrand
 {
-    public class UpdateBrandResponse
+    public record UpdateBrandResponse
     {
 
         public string Name { get; set; }

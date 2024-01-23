@@ -1,6 +1,6 @@
 ﻿namespace VSA.Api.Features.Instrument.AddInstrument
 {
-    public class AddInstrumentResponse
+    public record AddInstrumentResponse
     {
         public Guid Id { get; set; }
 

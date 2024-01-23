@@ -4,6 +4,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using VSA.Api.Features.Brands.AddBrand;
 using VSA.Api.Infrastructure.Database;
 
 

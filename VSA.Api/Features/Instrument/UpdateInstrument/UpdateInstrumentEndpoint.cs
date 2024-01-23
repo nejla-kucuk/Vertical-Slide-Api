@@ -8,7 +8,7 @@ namespace VSA.Api.Features.Instrument.UpdateInstrument
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("api/UpdateInstrument", async (UpdateInstrumentCommand command, ISender sender) =>
+            app.MapPost("api/UpdateInstrumentById", async (UpdateInstrumentCommand command, ISender sender) =>
             {
                 var response = await sender.Send(command);
 

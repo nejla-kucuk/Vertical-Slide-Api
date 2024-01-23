@@ -1,6 +1,6 @@
 ﻿namespace VSA.Api.Features.Instrument.DeleteInstrument
 {
-    public class DeleteInstrumentResponse
+    public record DeleteInstrumentResponse
     {
         public Guid BrandId { get; set; } 
 

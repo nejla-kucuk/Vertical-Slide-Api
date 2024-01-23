@@ -2,7 +2,7 @@
 
 namespace VSA.Api.Features.Instrument.GetAllInstrument
 {
-    public class GetAllInstrumentResponse
+    public record GetAllInstrumentResponse
     {
         public Guid BrandId { get; set; }
 

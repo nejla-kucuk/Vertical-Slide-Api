@@ -1,5 +1,6 @@
 ﻿using Carter;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using VSA.Api.Features.Instrument.AddInstrument;
 
 namespace VSA.Api.Features.Instrument.DeleteInstrument
@@ -8,9 +9,9 @@ namespace VSA.Api.Features.Instrument.DeleteInstrument
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("api/DeleteInstrument", async (DeleteInstrumentCommand command, ISender sender) =>
+            app.MapPost("api/DeleteInstrumentById", async ([FromQuery] Guid id, ISender sender) =>
             {
-                var response = await sender.Send(command);
+                var response = await sender.Send(new DeleteInstrumentCommand { Id = id });
 
                 return Results.Ok(response);
             });

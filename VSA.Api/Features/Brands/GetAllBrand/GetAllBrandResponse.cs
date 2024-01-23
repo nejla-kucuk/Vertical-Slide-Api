@@ -2,7 +2,7 @@
 
 namespace VSA.Api.Features.Brands.GetAllBrand
 {
-    public class GetAllBrandResponse
+    public record GetAllBrandResponse
     {
         public Guid Id { get; set; }
 

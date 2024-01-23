@@ -14,6 +14,4 @@ namespace VSA.Api.Features.Brands.UpdateBrand
         public string Address { get; set; }
     }
 
- 
-
 }

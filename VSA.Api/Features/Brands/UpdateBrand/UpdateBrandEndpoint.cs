@@ -8,7 +8,7 @@ namespace VSA.Api.Features.Brands.UpdateBrand
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("api/UpdateBrand", async (UpdateBrandCommand command, ISender sender) =>
+            app.MapPost("api/UpdateBrandById", async (UpdateBrandCommand command, ISender sender) =>
             {
                 var response = await sender.Send(command);
 

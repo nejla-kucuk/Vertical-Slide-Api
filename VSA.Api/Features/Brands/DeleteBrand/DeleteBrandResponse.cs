@@ -1,6 +1,6 @@
 ﻿namespace VSA.Api.Features.Brands.DeleteBrand
 {
-    public class DeleteBrandResponse
+    public record DeleteBrandResponse
     {
         public Guid Id { get; set; }
 

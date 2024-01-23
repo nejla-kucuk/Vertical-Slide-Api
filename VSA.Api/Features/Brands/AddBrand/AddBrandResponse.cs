@@ -2,7 +2,7 @@
 
 namespace VSA.Api.Features.Brands.AddBrand
 {
-    public class AddBrandResponse
+    public record AddBrandResponse
     {
         public Guid Id { get; set; }
 
