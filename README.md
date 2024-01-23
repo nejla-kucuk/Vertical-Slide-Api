@@ -11,14 +11,14 @@ Its main purpose is to provide an interface for adding, updating, and deleting b
 - Fluent Validation
 
 ## `Endpoints`
-1. **getAllBrand:** Retrieves all brands.
-2. **getAllInstrument:** Retrieves all instruments.
-3. **addBrand:** Adds brand information.
-4. **addInstrument:** Adds instrument information.
-5. **updateBrandById:** Updates a specific brand.
-6. **updateInstrumentById:** Updates a specific instrument.
-7. **deleteBrandById:** Deletes a specific brand.
-8. **deleteInstrumentById** Deletes a specific instrument.
+1. **GET /brands:** Retrieves all brands.
+2. **GET /instruments:** Retrieves all instruments.
+3. **POST /brands:** Adds brand information.
+4. **POST /instruments:** Adds instrument information.
+5. **POST /brand/{id}:** Updates a specific brand.
+6. **POST /instrument/{id}:** Updates a specific instrument.
+7. **POST /brand/{id}:** Deletes a specific brand.
+8. **POST /instrument/{id}** Deletes a specific instrument.
 
 ## `Contact`
 If you have any questions or suggestions, please contact us at nkucuk097@gmail.com.
