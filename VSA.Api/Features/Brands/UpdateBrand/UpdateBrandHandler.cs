@@ -5,7 +5,7 @@ using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Brands.UpdateBrand
 {
-    public class UpdateBrandHandler : IRequestHandler<UpdateBrandCommand, UpdateBrandResponse>
+    internal sealed class UpdateBrandHandler : IRequestHandler<UpdateBrandCommand, UpdateBrandResponse>
     {
         private readonly AppDbContext _dbContext;
         private readonly IValidator<UpdateBrandCommand> _validator;

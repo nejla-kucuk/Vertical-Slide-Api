@@ -5,7 +5,7 @@ using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Brands.DeleteBrand
 {
-    public class DeleteBrandHandler : IRequestHandler<DeleteBrandCommand, DeleteBrandResponse>
+    internal sealed class DeleteBrandHandler : IRequestHandler<DeleteBrandCommand, DeleteBrandResponse>
     {
         private readonly AppDbContext _dbContext;
     

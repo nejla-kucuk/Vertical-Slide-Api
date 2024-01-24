@@ -6,11 +6,11 @@ using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Instrument.UpdateInstrument
 {
-    public class UpdateInstrumentHandler : IRequestHandler<UpdateInstrumentCommand, UpdateInstrumentResponse>
+    internal sealed class UpdateInstrumentHandler : IRequestHandler<UpdateInstrumentCommand, UpdateInstrumentResponse>
     {
         private readonly AppDbContext _dbContext;
         private readonly IValidator<UpdateInstrumentCommand> _validator;
-
+        
 
         public UpdateInstrumentHandler(AppDbContext dbContext, IValidator<UpdateInstrumentCommand> validator)
         {

@@ -6,7 +6,7 @@ using VSA.Api.Infrastructure.Database;
 namespace VSA.Api.Features.Brands.GetAllBrand
 {
 
-    public class GetAllBrandsHandler : IRequestHandler<GetAllBrandsQuery, List<GetAllBrandResponse>>
+    internal sealed class GetAllBrandsHandler : IRequestHandler<GetAllBrandsQuery, List<GetAllBrandResponse>>
     {
         private readonly AppDbContext _dbContext;
 

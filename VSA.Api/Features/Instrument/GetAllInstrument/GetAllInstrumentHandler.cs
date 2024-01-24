@@ -9,7 +9,7 @@ using VSA.Api.Infrastructure.Database;
 
 namespace VSA.Api.Features.Instrument.GetAllInstrument
 {
-    public class GetAllInstrumentHandler : IRequestHandler<GetAllInstrumentQuery, List<GetAllInstrumentResponse>>
+    internal sealed class GetAllInstrumentHandler : IRequestHandler<GetAllInstrumentQuery, List<GetAllInstrumentResponse>>
     {
 
         private readonly AppDbContext _dbContext;

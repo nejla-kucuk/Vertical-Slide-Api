@@ -6,7 +6,7 @@ using VSA.Api.Shared;
 
 namespace VSA.Api.Features.Instrument.AddInstrument
 {
-    public class AddInstrumentHandler : IRequestHandler<AddInstrumentCommand, AddInstrumentResponse>
+    internal sealed class AddInstrumentHandler : IRequestHandler<AddInstrumentCommand, AddInstrumentResponse>
     {
         private readonly AppDbContext _dbContext;
         private readonly IValidator<AddInstrumentCommand> _validator;
