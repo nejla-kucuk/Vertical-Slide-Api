@@ -7,7 +7,7 @@ namespace VSA.Api.Entities
         
         public Brand Brand { get; set; } 
 
-        public Guid BrandId { get; set; } = Guid.Empty;
+        public Guid BrandId { get; set; } 
 
         public string Model { get; set; } = string.Empty;
 
