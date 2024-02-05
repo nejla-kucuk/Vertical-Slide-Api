@@ -12,16 +12,19 @@ namespace VSA.Api.Features.Brands.AddBrand
     internal sealed class AddBrandHandler : IRequestHandler<AddBrandCommand, AddBrandResponse>
     {
         private readonly AppDbContext _dbContext;
-        private readonly IValidator<AddBrandCommand> _validator;
 
-        public AddBrandHandler(AppDbContext dbContext, IValidator<AddBrandCommand> validator)
+        private readonly ValidationHelper _validationHelper;
+        
+
+        public AddBrandHandler(AppDbContext dbContext, ValidationHelper validationHelper)
         {
             _dbContext = dbContext;
-            _validator = validator;
+            _validationHelper = validationHelper;
         }
 
         public async Task<AddBrandResponse> Handle(AddBrandCommand request, CancellationToken cancellationToken)
         {
+            /*
             var validationRequest = _validator.Validate(request);
             if (!validationRequest.IsValid)
             {
@@ -29,6 +32,8 @@ namespace VSA.Api.Features.Brands.AddBrand
                     "AddBrand.Validation",
                     "Values are not empty.");
             }
+            */
+            _validationHelper.ValidateAndThrow(request);
 
             var brand = new Brand
             {
