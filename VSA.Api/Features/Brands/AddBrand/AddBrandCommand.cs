@@ -10,7 +10,8 @@ namespace VSA.Api.Features.Brands.AddBrand
 
         public string DisplayText { get; set; }
 
-        public string Address { get; set; }  
+        public string Address { get; set; }
+       
     }
 
 }
