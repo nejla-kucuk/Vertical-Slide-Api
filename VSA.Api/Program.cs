@@ -32,6 +32,8 @@ builder.Services.AddValidatorsFromAssembly(assembly);
 
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>));
+
 builder.Services.AddCarter();
 
 var app = builder.Build();
