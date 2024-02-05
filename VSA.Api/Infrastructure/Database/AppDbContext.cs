@@ -27,43 +27,43 @@ namespace VSA.Api.Infrastructure.Database
 
             modelBuilder.Entity<Brand>()
                 .Property(b => b.DisplayText)
-                .IsRequired(); // DisplayText alanının zorunlu olduğunu belirtiyoruz.
+                .IsRequired();
 
             modelBuilder.Entity<Brand>()
                 .Property(b => b.Address)
-                .IsRequired(); // Address alanının zorunlu olduğunu belirtiyoruz.
+                .IsRequired(); 
 
             modelBuilder.Entity<Brand>()
-                .HasMany(b => b.Instruments) // Brand sınıfının Instruments navigation property'si için ilişkiyi belirtiyoruz.
-                .WithOne(i => i.Brand) // Instrument sınıfının Brand navigation property'si ile ilişkiyi belirtiyoruz.
-                .HasForeignKey(i => i.BrandId); // Instrument sınıfının BrandId foreign key'ini belirtiyoruz.
+                .HasMany(b => b.Instruments) 
+                .WithOne(i => i.Brand) 
+                .HasForeignKey(i => i.BrandId); 
 
 
             modelBuilder.Entity<Instruments>()
-                .HasKey(i => i.Id); // Instrument sınıfının anahtar alanını belirtiyoruz.
+                .HasKey(i => i.Id); 
 
             modelBuilder.Entity<Instruments>()
                 .Property(i => i.Model)
-                .IsRequired(); // Model alanının zorunlu olduğunu belirtiyoruz.
+                .IsRequired(); 
 
             modelBuilder.Entity<Instruments>()
                 .Property(i => i.Color)
-                .IsRequired(); // Color alanının zorunlu olduğunu belirtiyoruz.
+                .IsRequired(); 
 
             modelBuilder.Entity<Instruments>()
                 .Property(i => i.ProductionYear)
-                .HasColumnType("date"); // ProductionYear alanının tipini belirtiyoruz, örneğin date tipi.
+                .HasColumnType("date"); 
 
             modelBuilder.Entity<Instruments>()
                 .Property(i => i.Price)
-                .HasColumnType("decimal(18,2)") // Price alanının tipini ve precision/scale değerlerini belirtiyoruz.
-                .IsRequired(); // Price alanının zorunlu olduğunu belirtiyoruz.
+                .HasColumnType("decimal(18,2)") 
+                .IsRequired(); 
 
             modelBuilder.Entity<Instruments>()
-                .HasOne(i => i.Brand) // Instrument sınıfının Brand navigation property'si ile ilişkiyi belirtiyoruz.
-                .WithMany(b => b.Instruments) // Brand sınıfının Instruments navigation property'si ile ilişkiyi belirtiyoruz.
-                .HasForeignKey(i => i.BrandId) // Instrument sınıfının BrandId foreign key'ini belirtiyoruz.
-                .OnDelete(DeleteBehavior.Cascade); // Eğer bir Brand silinirse, bağlı Instrument'ları da siler.
+                .HasOne(i => i.Brand) 
+                .WithMany(b => b.Instruments) 
+                .HasForeignKey(i => i.BrandId)
+                .OnDelete(DeleteBehavior.Cascade); 
 
             base.OnModelCreating(modelBuilder);
         }
