@@ -20,5 +20,11 @@ Its main purpose is to provide an interface for adding, updating, and deleting b
 7. **POST /brand/{id}:** Deletes a specific brand.
 8. **POST /instrument/{id}** Deletes a specific instrument.
 
+## `Installation`
+1. Clone the project.
+   - https://github.com/nejla-kucuk/Vertical-Slide-Api.git
+2. Configure your connection settings in the `appsettings.json` file.
+3. Run the "start" command from your IDE to launch the project.
+
 ## `Contact`
 If you have any questions or suggestions, please contact us at nkucuk097@gmail.com.
