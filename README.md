@@ -15,10 +15,10 @@ Its main purpose is to provide an interface for adding, updating, and deleting b
 2. **GET /instruments:** Retrieves all instruments.
 3. **POST /brands:** Adds brand information.
 4. **POST /instruments:** Adds instrument information.
-5. **POST /brand/{id}:** Updates a specific brand.
-6. **POST /instrument/{id}:** Updates a specific instrument.
-7. **POST /brand/{id}:** Deletes a specific brand.
-8. **POST /instrument/{id}** Deletes a specific instrument.
+5. **POST /brands/{id}:** Updates a specific brand.
+6. **POST /instruments/{id}:** Updates a specific instrument.
+7. **POST /brands/{id}:** Deletes a specific brand.
+8. **POST /instruments/{id}** Deletes a specific instrument.
 
 ## `Installation`
 1. Clone the project.
